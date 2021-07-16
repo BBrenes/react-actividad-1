@@ -1,22 +1,28 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
 import './App.css';
+import Counter from './components/Counter'
+import Actions from './components/Actions'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
 
 function App() {
+  const[count, setCount] = useState(0)
+
+  const add = () => {
+    setCount(count + 1)
+  }
+
+  const subtract = () => {
+    setCount(count - 1)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Counter count={count} />
+        <ButtonGroup variant="contained" color="primary" >
+          <Actions action={subtract} text='Restar' />
+          <Actions action={add} text='Sumar' />
+        </ButtonGroup>
       </header>
     </div>
   );
